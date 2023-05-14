@@ -4,11 +4,12 @@ using CI = ChallengeLibrary.ConsoleInteraction;
 using System.Data;
 using MyHashTable;
 using System;
+using System.Collections.Generic;
 
 namespace lab
 {
     [ExcludeFromCodeCoverage]
-    public class ThirdPart
+    public class ThirdAndFourthPart
     {
         static void Main()
         {
@@ -56,10 +57,10 @@ namespace lab
                             Console.WriteLine("Вы работаете со таблицей:");
                             table.Show();
                             Console.WriteLine();
-                            
+
                             Console.WriteLine("Создайте элемент для добавления:");
                             Challenge challenge = CI.ManualChallenge(table.ToString() + "\nСоздайте элемент для добавления");
-                            
+
                             table.Add(challenge);
                             Console.WriteLine("\nЭлемент успешно добавлен:");
                             table.Show();
@@ -84,12 +85,12 @@ namespace lab
                             Console.WriteLine("Какой элемент хотите удалить (ключ)?");
                             Challenge toFind = new();
                             toFind.Init();
-                            
+
                             bool result = table.FindPoint(toFind, out Challenge found, out int foundIndex);
                             if (result)
                             {
                                 Console.WriteLine("\nЭлемент успешно найден:");
-                                
+
                                 found.Show();
                             }
                             else
@@ -128,8 +129,8 @@ namespace lab
                             Console.WriteLine("Какой элемент хотите удалить (ключ)?");
                             Challenge toFind = new();
                             toFind.Init();
-                            
-                            
+
+
                             bool result = table.Remove(toFind);
                             if (result)
                             {
@@ -152,6 +153,40 @@ namespace lab
                             }
                             break;
                         }
+                    // Клонирование и проверка
+                    case 6:
+                        {
+							if (table.Count() == 0)
+							{
+								Console.WriteLine("Похоже, таблица пустая, попробуйте создать его!");
+                                break;
+							}
+							
+                            // Клонирование таблицы
+							MyHashTable<Challenge> clone = table.Clone();
+							MyHashTable<Challenge> copy = table.ShallowCopy();
+							Console.WriteLine("Исходная таблица:");
+							table.Show();
+
+							Console.WriteLine("\nКлон:");
+							clone.Show();
+                            Console.WriteLine("\nКопия:");
+                            copy.Show();
+
+                            // Изменение одного из полей
+                            table.TestCopyClone();
+							Console.WriteLine("\n\nПосле изменения: ");
+							Console.WriteLine("Исходный список:");
+							table.Show();
+
+							Console.WriteLine("\nКлон:");
+							clone.Show();
+							Console.WriteLine("\nКопия:");
+							copy.Show();
+
+
+							break;
+						}
                     
 
                     // Завершение работы
