@@ -28,25 +28,21 @@ namespace TestCollections
         }
 
         [TestMethod]
-        public void MyHashTable_Add_ValidData_ItemAdded()
+        public void MyHashTableAddValidDataItemAddedTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
 
             hashtable.Add(challenge1);
 
-            // Assert
             Assert.IsTrue(hashtable.Count == 1);
         }
 
         [TestMethod]
-        public void MyHashTable_Add_NullData_ItemNotAdded()
+        public void MyHashTableAddNullDataItemNotAddedTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new();
 
-            // Act
             hashtable.Add(null);
 
             Assert.IsTrue(hashtable.Count == 0);
@@ -65,39 +61,32 @@ namespace TestCollections
         }
 
         [TestMethod]
-        public void MyHashTable_Remove_ExistingItem_ItemRemoved()
+        public void MyHashTableRemoveExistingItemItemRemovedTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             hashtable.Add(challenge1);
 
-            // Act
-            bool result = hashtable.Remove(challenge1);
+            hashtable.Remove(challenge1);
 
-            // Assert
             Assert.IsFalse(hashtable.Contains(challenge1));
         }
 
         [TestMethod]
-        public void MyHashTable_Remove_NonExistingItem_NoChange()
+        public void MyHashTableRemoveNonExistingItemNoChangeTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             hashtable.Add(challenge1);
 
-            // Act
             bool result = hashtable.Remove(new Challenge());
 
-            // Assert
             Assert.IsTrue(!result && hashtable.Contains(challenge1));
         }
 
         [TestMethod]
-        public void MyHashTable_Clear_EmptyTable()
+        public void MyHashTableClearEmptyTableTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -105,17 +94,14 @@ namespace TestCollections
             hashtable.Add(challenge1);
             hashtable.Add(challenge2);
 
-            // Act
             hashtable.Clear();
 
-            // Assert
             Assert.IsTrue(0 == hashtable.Count && !hashtable.Contains(challenge1) && !hashtable.Contains(challenge2));
         }
 
         [TestMethod]
-        public void MyHashTable_Enumerator_EnumeratesItems()
+        public void MyHashTableEnumeratorEnumeratesItemsTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             int expectedSum = 45;
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
@@ -127,22 +113,18 @@ namespace TestCollections
             hashtable.Add(challenge3);
 
 
-
-            // Act
             int sum = 0;
             foreach (Challenge item in hashtable)
             {
                 sum += item.TimeToPass;
             }
 
-            // Assert
             Assert.AreEqual(expectedSum, sum);
         }
 
         [TestMethod]
-        public void MyHashTable_FindPoint_ExistingData_ReturnsTrueAndIndex()
+        public void MyHashTableFindPointExistingDataTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -152,18 +134,15 @@ namespace TestCollections
             hashtable.Add(challenge2);
             hashtable.Add(challenge3);
 
-            // Act
             bool result = hashtable.FindPoint(challenge2, out Challenge foundElement, out int foundIndex);
 
-            // Assert
             Assert.IsTrue(result);
             Assert.AreEqual(challenge2, foundElement);
         }
 
         [TestMethod]
-        public void MyHashTable_FindPoint_NonExistingData_ReturnsFalseAndNegativeIndex()
+        public void MyHashTableFindPointNonExistingDataTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -173,58 +152,46 @@ namespace TestCollections
             hashtable.Add(challenge2);
             hashtable.Add(challenge3);
 
-            // Act
             bool result = hashtable.FindPoint(new Challenge(), out Challenge foundElement, out int foundIndex);
 
-            // Assert
             Assert.IsFalse(result);
             Assert.AreEqual(null, foundElement);
             Assert.AreEqual(-1, foundIndex);
         }
 
         [TestMethod]
-        public void MyHashTable_Count_EmptyTable_ReturnsZero()
+        public void MyHashTableCountEmptyTableReturnsZeroTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
 
-            // Act
             int count = hashtable.Count;
 
-            // Assert
             Assert.AreEqual(0, count);
         }
 
         [TestMethod]
-        public void MyHashTable_IsEmpty_EmptyTable_ReturnsTrue()
+        public void MyHashTableIsEmptyEmptyTableReturnsTrueTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
 
-            // Act
             bool isEmpty = hashtable.IsEmpty();
 
-            // Assert
             Assert.IsTrue(isEmpty);
         }
 
         [TestMethod]
-        public void MyHashTable_IsReadOnly_Always_ReturnsFalse()
+        public void MyHashTableIsReadOnlyAlwaysReturnsFalseTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
 
-            // Act
             bool isReadOnly = hashtable.IsReadOnly;
 
-            // Assert
             Assert.IsFalse(isReadOnly);
         }
 
         [TestMethod]
-        public void MyHashTable_CopyTo_ValidArray_CopiesElements()
+        public void MyHashTableCopyToValidArrayCopiesElementsTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -244,14 +211,12 @@ namespace TestCollections
                 result &= hashtable.Contains(challenge);
             }
 
-            // Assert
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void MyHashTable_CopyToWrongSize()
+        public void MyHashTableCopyToWrongSizeTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -263,14 +228,12 @@ namespace TestCollections
 
             Challenge[] array = new Challenge[2];
 
-            // Act and Assert
             Assert.ThrowsException<ArgumentException>(() => hashtable.CopyTo(array, 0));
         }
 
         [TestMethod]
-        public void MyHashTable_CopyToNullArray()
+        public void MyHashTableCopyToNullArrayTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -282,14 +245,12 @@ namespace TestCollections
 
             Challenge[] array = null;
 
-            // Act and Assert
             Assert.ThrowsException<ArgumentNullException>(() => hashtable.CopyTo(array, 0));
         }
 
         [TestMethod]
-        public void MyHashTable_CopyToWrongIndexTest()
+        public void MyHashTableCopyToWrongIndexTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -301,14 +262,12 @@ namespace TestCollections
 
             Challenge[] array = new Challenge[5];
 
-            // Act and Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => hashtable.CopyTo(array, 10));
         }
 
         [TestMethod]
-        public void MyHashTable_CopyToIndexBelowZeroTest()
+        public void MyHashTableCopyToIndexBelowZeroTest()
         {
-            // Arrange
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -320,12 +279,11 @@ namespace TestCollections
 
             Challenge[] array = new Challenge[5];
 
-            // Act and Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => hashtable.CopyTo(array, -10));
         }
 
         [TestMethod]
-        public void MyHashTable_CloneTest()
+        public void MyHashTableCloneTest()
         {
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");
@@ -346,7 +304,7 @@ namespace TestCollections
         }
 
         [TestMethod]
-        public void MyHashTable_ShallowCopy_ReturnsNewInstanceWithSameElements()
+        public void MyHashTableShallowCopyTest()
         {
             MyHashTable<Challenge> hashtable = new MyHashTable<Challenge>();
             Challenge challenge1 = new Challenge("Математика", 25, "Ирина");

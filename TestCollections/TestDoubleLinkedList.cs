@@ -37,7 +37,7 @@ namespace TestCollections
         }
 
         [TestMethod]
-        public void DoubleLinkedListRemoveOneElementIsRemovedTest()
+        public void DoubleLinkedListRemoveOneTest()
         {
             DoubleLinkedList<Challenge> list = new();
             Challenge challenge1 = new("Физика", 100, "Ирина");
@@ -66,7 +66,7 @@ namespace TestCollections
         }
 
         [TestMethod]
-        public void DoubleLinkedListRemoveAllElementsAreRemovedTest()
+        public void DoubleLinkedListRemoveAllElementsTest()
         {
             DoubleLinkedList<Challenge> list = new();
             Challenge challenge2 = new Challenge("История", 10, "Дима");
@@ -124,7 +124,7 @@ namespace TestCollections
         }
 
         [TestMethod]
-        public void DoubleLinkedListRandomInitNormalLength()
+        public void DoubleLinkedListRandomInitNormalLengthTest()
         {
             DoubleLinkedList<Challenge> list = new();
 
@@ -135,7 +135,7 @@ namespace TestCollections
 
 
         [TestMethod]
-        public void DoubleLinkedListRandomInitBelowZeroLength()
+        public void DoubleLinkedListRandomInitBelowZeroLengthTest()
         {
             DoubleLinkedList<Challenge> list = new();
 
