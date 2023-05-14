@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BinTree\BinTree.csproj" />
     <ProjectReference Include="..\ChallengeLibrary\ChallengeLibrary.csproj" />
-    <ProjectReference Include="..\LinkedList\LinkedList.csproj" />
+    <ProjectReference Include="..\LinkedList\DoubleLinkedList.csproj" />
     <ProjectReference Include="..\MyHashTable\MyHashTable.csproj" />
   </ItemGroup>
 
